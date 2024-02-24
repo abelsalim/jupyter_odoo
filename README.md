@@ -97,7 +97,7 @@ with odoo.api.Environment.manage():
 ### Trabalhando remotamente
 
 > __Caso não vá trabalhar de forma remota com o jupyter avance para o próximo__
-> __[tópico](#criando-diretório-base)__.
+> __[tópico](#criando-diretório-baseconfig)__.
 
 Caso seja o seu caso manter o jupyter em um servidor ou vm, temos que gerar o
 arquivo de configurações do jupyter lab e/ou notbook. Para isso, vamos gerar
