@@ -4,8 +4,8 @@
 
 Este repositório trata-se da utilização do ["odoo-bin shell"](https://www.odoo.com/documentation/17.0/developer/reference/cli.html?highlight=conf#shell)
 a partir do Jupyter. O [Jupyter](https://docs.jupyter.org/pt-br/latest/)
-(Lab/Notebook) proporciona diversas esperiências positivas, porém inicialmente
-não é particularmente intuitivo iniciar-lo como ocorre no ipython. Portanto, os
+(Lab/Notebook) proporciona diversas experiências positivas, porém inicialmente
+não é particularmente intuitivo iniciá-lo como ocorre no ipython. Portanto, os
 passos abaixo servem de orientação para implantar sua utilização.
 
 #### Utilização do jupyter
@@ -15,7 +15,7 @@ passos abaixo servem de orientação para implantar sua utilização.
 
 O [IPython](https://ipython.readthedocs.io/en/stable/) é basicamente o kernel
 padrão do jupyter, portanto o que for executado, instanciado ou pré carregado e
-incluido em seu interpretador pode ser direcionado para o jupyter.
+incluído em seu interpretador pode ser direcionado para o jupyter.
 
 Sabendo disso, é necessário gerar um script de inicialização para o ipython onde
 seja carregado todas as [configurações](https://www.odoo.com/documentation/17.0/developer/reference/cli.html?highlight=conf#reference-cmdline-config)
@@ -28,7 +28,7 @@ Ao acessar a árvore de diretório `.ipython/profile_default/startup` localizado
 na `$HOME`, chegamos no diretório de inicialização do IPython. Ao acessar o
 [README](https://github.com/ipython/ipython/blob/main/IPython/core/profile/README_STARTUP)
 é possível compreender que os scripts de inicialização podem conter qualquer
-nomeclatura, desde que inicie com numerais onde possam identificar sua
+nomenclatura, desde que inicie com numerais onde possam identificar sua
 sequência.
 
 #### Vamos ao código
@@ -44,7 +44,7 @@ from odoo.tools import config
 
 ##### Acessando diretório das configurações
 ```python
-# Otém caminho absoluto do diretório de configurações
+# Obtém caminho absoluto do diretório de configurações
 diretorio = Path(Path().home(), Path('jupyter/.config'))
 
 # Acessa diretório
@@ -96,7 +96,7 @@ with odoo.api.Environment.manage():
 
 ### Trabalhando remotamente
 
-> __Caso não vá tratalhar de forma remota com o jupyter avance para o próximo__
+> __Caso não vá trabalhar de forma remota com o jupyter avance para o próximo__
 > __[tópico](#criando-diretório-base)__.
 
 Caso seja o seu caso manter o jupyter em um servidor ou vm, temos que gerar o
@@ -113,7 +113,7 @@ Com os arquivos gerados, teremos uma varável `c` que recebe o `get_ipython()`,
 que por sua vez nada mais é do que um método que recebe parâmetros de execução e
 os atribui para o __interpretador do ipython__.
 
-##### Com a variável prédefinida, temos apenas que parametrizar duas situações:
+##### Com a variável pré definida, temos apenas que parametrizar duas situações:
 
 * 1º - Setar o __endereço de conexão__:
     * c.ServerApp.ip = '192.168.100.10'.
@@ -154,7 +154,7 @@ iniciar o jupyter lab/notebook sem problemas.
 
 ### Autenticação com senha
 ___
-Como foi [dito anteriormente](#com-a-variável-prédefinida-temos-apenas-que-parametrizar-duas-situações),
+Como foi [dito anteriormente](#com-a-variável-pré-definida-temos-apenas-que-parametrizar-duas-situações),
 as conexões externas estão liberadas para qualquer um com acesso a rede. Para
 contornar essa situação podemos gerar uma senha de autenticação gerada e
 gerenciada pelo próprio jupyter.
@@ -164,13 +164,13 @@ Para gerar-la é necessário executar o comando
 
 ### Início automático
 Bom, não consegui fazer com que a inicialização do jupyter através do `systemd`
-instanciasse com êxito o ponteiro do banco representado pela variável `env`.
+instâncias se com êxito o ponteiro do banco representado pela variável `env`.
 
 Portanto, foi utilizado apenas o `screen` em uma seção nomeada para isso, sendo
 o controle de quantidade de sessões realizado via _shell script_.
 
 ```zsh
-# Entra caso o número de sessões nomeadas como "jupyter_sessao" seja 0 e inicia
+# Entrar caso o número de sessões nomeadas como "jupyter_sessao" seja 0 e inicia
 # uma nova instância da mesma
 if [ $(screen -ls|grep "jupyter_sessao"|wc -l) -eq 0 ]; then
     screen -dmS jupyter_sessao zsh -c 'jupyter-lab'
@@ -178,4 +178,4 @@ fi
 ```
 
 ## Conclusão
-Agoara é possível utilizar o `odoo-bin shell` pelo Jupyer Lab/Notebook.
+Agora é possível utilizar o `odoo-bin shell` pelo Jupyer Lab/Notebook.
