@@ -93,12 +93,9 @@ get_ipython().push(
     {
         'openerp': odoo,
         'odoo': odoo,
-        'self': env.user,
+        'env': env,
     }
 )
-
-# Deleta env do contexto
-del env
 
 # rollback no ponteiro inutilizado
 cr.rollback()
