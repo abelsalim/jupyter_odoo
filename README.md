@@ -40,6 +40,8 @@ import odoo
 
 from pathlib import os, Path
 from odoo.tools import config
+
+from IPython.core.getipython import get_ipython
 ```
 
 ##### Acessando diretório das configurações
@@ -78,6 +80,28 @@ with odoo.api.Environment.manage():
 
     # Instância do banco em 'Environment object'
     env = odoo.api.Environment(cr, uid, ctx)
+```
+
+##### Capturando Environments e alimentando escopo do IPython
+
+```python
+# Atribui `Environments` em `_local`
+env.reset()
+
+# Insere variáveis no escopo ipython
+get_ipython().push(
+    {
+        'openerp': odoo,
+        'odoo': odoo,
+        'self': env.user,
+    }
+)
+
+# Deleta env do contexto
+del env
+
+# rollback no ponteiro inutilizado
+cr.rollback()
 ```
 
 > 1ª Nota: Ao iniciar o ipython esse script será executado e a variável `env`
